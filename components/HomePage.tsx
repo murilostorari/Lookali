@@ -45,13 +45,13 @@ const Hero: React.FC<{ onSearchSubmit: (query: string) => void }> = ({ onSearchS
             setSearchQuery('');
         }
     };
-
+    
     return (
         <section className="relative my-8 rounded-2xl overflow-hidden">
             <img src="https://images.pexels.com/photos/8422708/pexels-photo-8422708.jpeg" alt="Fundo com pessoa fazendo entrega" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20"></div>
             <div className="relative z-10 flex flex-col items-center justify-center text-center text-white py-20 sm:py-24 lg:py-28 px-4">
-                <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight max-w-3xl">Precisa pra hoje? Tem no seu bairro!!!!!</h1>
+                <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight max-w-3xl">Precisa pra hoje? Tem no seu bairro.</h1>
                 <p className="mt-4 text-lg text-gray-200 max-w-2xl">Descubra produtos e serviços com entrega no mesmo dia ou retirada em minutos.</p>
                 <div className="mt-8 w-full max-w-2xl">
                     <form onSubmit={handleSearch} className="flex items-center gap-2 p-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
@@ -73,14 +73,14 @@ const Hero: React.FC<{ onSearchSubmit: (query: string) => void }> = ({ onSearchS
     );
 };
 
-const ShopCategories: React.FC<{ onCategoryClick: (categoryName: string) => void }> = ({ onCategoryClick }) => (
+const ShopCategories: React.FC<{onCategoryClick: (categoryName: string) => void}> = ({onCategoryClick}) => (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-3xl font-bold text-shop-dark mb-8">Shop Our Top Categories</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {TOP_CATEGORIES.map((category, index) => (
-                <button
-                    onClick={() => onCategoryClick(category.name)}
-                    key={category.name}
+                <button 
+                    onClick={() => onCategoryClick(category.name)} 
+                    key={category.name} 
                     className="relative rounded-lg overflow-hidden group stagger-child"
                     style={{ animationDelay: `${index * 100}ms` }}
                 >
@@ -115,8 +115,8 @@ const NavigateByType: React.FC<{ navigateTo: (view: View) => void }> = ({ naviga
             <h2 className="text-3xl font-bold text-shop-dark mb-8">Navegue por Tipo de Local</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {locationTypes.map((type, index) => (
-                    <button
-                        key={type.name}
+                    <button 
+                        key={type.name} 
                         onClick={handleClick}
                         className="flex items-center gap-4 bg-brand-bg p-4 rounded-lg border border-transparent hover:border-shop-green hover:shadow-md transition-all duration-300 stagger-child"
                         style={{ animationDelay: `${index * 100}ms` }}
@@ -145,14 +145,14 @@ const DiscountOffers = () => (
                         <p className={`text-5xl font-bold ${card.textColor}`}>${card.amount}</p>
                         <p className="text-sm mt-2">Explore Our Furniture & Home Furnishing Range</p>
                     </div>
-                    <img src={card.imageUrl} alt={`Discount offer ${card.amount}`} className="w-full h-48 object-cover" />
+                    <img src={card.imageUrl} alt={`Discount offer ${card.amount}`} className="w-full h-48 object-cover"/>
                 </div>
             ))}
         </div>
     </section>
 );
 
-const ProductTabs: React.FC<{ onProductClick: (p: Product) => void, onSellerClick: (s: Seller) => void }> = ({ onProductClick, onSellerClick }) => {
+const ProductTabs: React.FC<{onProductClick: (p: Product) => void, onSellerClick: (s: Seller) => void}> = ({onProductClick, onSellerClick}) => {
     const tabs = ['Gadgets', 'Fashion', 'Toys', 'Education', 'Beauty', 'Fitness', 'Furniture', 'Sneakers'];
     const [activeTab, setActiveTab] = useState('Sneakers');
 
@@ -190,7 +190,7 @@ const CashbackBanner = () => (
                     <button className="mt-8 bg-shop-green text-white font-semibold px-8 py-3 rounded-full hover:bg-shop-dark transition-colors text-lg">Learn More</button>
                 </div>
                 <div className="relative h-64 md:h-full">
-                    <img src="https://assets-global.website-files.com/63e857eaeaf853471d5335ff/63ea1a963f08a8c3dcd7c945_visa%20card%2003.svg" alt="Shopcart credit card" className="absolute right-0 bottom-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 w-3/4 md:w-full max-w-sm" />
+                    <img src="https://assets-global.website-files.com/63e857eaeaf853471d5335ff/63ea1a963f08a8c3dcd7c945_visa%20card%2003.svg" alt="Shopcart credit card" className="absolute right-0 bottom-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 w-3/4 md:w-full max-w-sm"/>
                 </div>
             </div>
         </div>
@@ -198,44 +198,44 @@ const CashbackBanner = () => (
 );
 
 const HomePage: React.FC<HomePageProps> = ({ onProductClick, onSellerClick, onSearchSubmit, onCategoryClick, navigateTo, isLoading }) => {
-    return (
-        <div className="bg-white">
-            <Hero onSearchSubmit={onSearchSubmit} />
-            <ShopCategories onCategoryClick={onCategoryClick} />
-            <ProductCarousel
-                title="Todays Best Deals for you!"
-                products={DEALS_PRODUCTS}
-                onProductClick={onProductClick}
-                onSellerClick={onSellerClick}
-                onSeeAllClick={() => { }}
-                hideSeeAllButton
-                isLoading={isLoading}
-            />
-            <NavigateByType navigateTo={navigateTo} />
-            <DiscountOffers />
-            <ProductCarousel
-                title="Weekly Popular Products"
-                products={NEW_ARRIVALS}
-                onProductClick={onProductClick}
-                onSellerClick={onSellerClick}
-                onSeeAllClick={() => { }}
-                hideSeeAllButton
-                isLoading={isLoading}
-            />
-            <ProductTabs onProductClick={onProductClick} onSellerClick={onSellerClick} />
-            <CashbackBanner />
-            <ProductCarousel
-                title="Most Selling Products"
-                products={[...ALL_PRODUCTS].reverse().slice(0, 5)}
-                onProductClick={onProductClick}
-                onSellerClick={onSellerClick}
-                onSeeAllClick={() => { }}
-                hideSeeAllButton
-                isLoading={isLoading}
-            />
-            <BestSellingStore onSellerClick={onSellerClick} />
-        </div>
-    );
+  return (
+    <div className="bg-white">
+      <Hero onSearchSubmit={onSearchSubmit} />
+      <ShopCategories onCategoryClick={onCategoryClick} />
+      <ProductCarousel
+        title="Todays Best Deals for you!"
+        products={DEALS_PRODUCTS}
+        onProductClick={onProductClick}
+        onSellerClick={onSellerClick}
+        onSeeAllClick={() => {}}
+        hideSeeAllButton
+        isLoading={isLoading}
+      />
+      <NavigateByType navigateTo={navigateTo} />
+      <DiscountOffers />
+      <ProductCarousel
+        title="Weekly Popular Products"
+        products={NEW_ARRIVALS}
+        onProductClick={onProductClick}
+        onSellerClick={onSellerClick}
+        onSeeAllClick={() => {}}
+        hideSeeAllButton
+        isLoading={isLoading}
+      />
+       <ProductTabs onProductClick={onProductClick} onSellerClick={onSellerClick} />
+      <CashbackBanner />
+       <ProductCarousel
+        title="Most Selling Products"
+        products={[...ALL_PRODUCTS].reverse().slice(0, 5)}
+        onProductClick={onProductClick}
+        onSellerClick={onSellerClick}
+        onSeeAllClick={() => {}}
+        hideSeeAllButton
+        isLoading={isLoading}
+      />
+      <BestSellingStore onSellerClick={onSellerClick} />
+    </div>
+  );
 };
 
 export default HomePage;
